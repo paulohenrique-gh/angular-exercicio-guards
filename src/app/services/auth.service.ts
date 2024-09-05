@@ -23,16 +23,4 @@ export class AuthService {
       })
     );
   }
-
-  logout(): Observable<any> {
-    return this.httpClient.post(`${this.url}/logout`, {}).pipe(
-      tap((res) => {
-        console.log(res)
-        localStorage.removeItem('token')
-      }),
-      catchError((error) => {
-        return throwError(() => error);
-      })
-    );
-  }
 }

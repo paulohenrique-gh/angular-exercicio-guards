@@ -13,9 +13,6 @@ export class HomeComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogout(): void {
-    this.authService.logout().subscribe({
-      next: () => this.router.navigateByUrl('login'),
-      error: (err) => console.log(err),
-    });
+    localStorage.removeItem("token");
   }
 }
