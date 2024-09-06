@@ -8,6 +8,7 @@ import { adminGuard } from './guards/admin.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { contactGuard } from './guards/contact.guard';
 
 export const routes: Routes = [
   {
@@ -28,7 +29,8 @@ export const routes: Routes = [
       },
       {
         path: 'contact',
-        component: ContactComponent
+        component: ContactComponent,
+        canDeactivate: [contactGuard]
       },
       {
         path: 'admin-area',
