@@ -29,7 +29,10 @@ export class LoginComponent {
         const route = this.activatedRoute.snapshot.queryParamMap.get('redirectTo') || '';
         this.router.navigateByUrl(route);
       },
-      error: (err) => alert(err)
+      error: (err) => {
+        alert('Wrong credentials');
+        console.log(err);
+      }
     });
   }
 }
