@@ -58,3 +58,6 @@ export const routes: Routes = [
   },
 ];
 ```
+
+![image](https://github.com/user-attachments/assets/11d069b2-28a8-4a45-a9bf-cafd37cca073)
+
