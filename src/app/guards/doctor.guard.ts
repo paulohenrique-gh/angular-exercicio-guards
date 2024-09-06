@@ -14,8 +14,6 @@ export const doctorGuard: CanActivateFn = (route, state) => {
     roles = decodedToken?.roles?.split(',');
   }
 
-  console.log(roles)
-
   if (roles && roles.includes('ROLE_DOCTOR')) {
     return true;
   } else {
