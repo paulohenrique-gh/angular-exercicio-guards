@@ -1,1 +1,6 @@
-<p>contact works!</p>
+<form *ngIf="!isAllowedToLeave; else free" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+  <input type="text" [(ngModel)]="email" placeholder="Your email" name="email" id="email" [email]="true" required />
+  <button type="submit" [disabled]="contactForm.invalid">Register email</button>
+</form>
+
+<ng-template #free>You're free to leave this page now.</ng-template>
