@@ -1,0 +1,19 @@
+<ul class="menu">
+  <li>
+    <a
+      routerLink="/"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Home</a
+    >
+  </li>
+  <li>
+    <a routerLink="/about" routerLinkActive="active-link">About</a>
+  </li>
+  <li>
+    <a routerLink="/contact" routerLinkActive="active-link">Contact</a>
+  </li>
+  <li *ngIf="isLoggedIn$ | async">
+    <button (click)="onLogout()" class="logout-btn">Logout</button>
+  </li>
+</ul>
