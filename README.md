@@ -1,27 +1,60 @@
-# ExercicioGuard
+# Angular Guards / Interceptors
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.4.
+Este exercício é parte do módulo de Angular do bootcamp T-Academy e aborda o uso de Guards e Interceptors.
 
-## Development server
+## Descrição do exercício
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Consumir uma API com autenticação e autorização no front.\
+  **Implementação**: Foi utilizada [a API feita no Spring](https://github.com/paulohenrique-gh/spring-atividade-autenticacao-autorizacao) para autentação e autorização, utilizando os endpoints para registro e login. O guard personalizado `authGuard` foi utilizado para proteger as rotas do front-end.
 
-## Code scaffolding
+- Adicionar camadas de autorização para "logado" e para roles
+  **Implementação**: Foram criadas páginas para admins e para médicos: médicos só podem acessar a área de médicos, admins podem acessar as duas. Os guards `adminGuard` e `doctorGuard` foram utilizados para validar os `roles` do usuário e liberar o acesso a essas rotas dependendo do papel do usuário autenticado.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Usar o navigate/navigateByUrl para redirecionar caso necessário.
+  **Implementação**: Os métodos `navigate` e `navigateByUrl` foram utilizados em diferentes partes, como no `NavbarComponent` durante o logout e redirecionamento para a página de login, e no `authGuard` para redirecionar para o login se o usuário não estiver autenticado.
 
-## Build
+- Desafio 01: Após finalizar, nao permitir o usuario fazer "NADA" sem
+estar logado. Sim, se clicar em um botao e nao estiver logado
+volta pra pagina de login.
+**Implementação**: Foi utilizada uma função `canActivateChild` para bloquear todas as rotas para usuários não autenticados, exceto a de login.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Desafio 02: Adicionar a camada de canDeactivate
+**Implementação**: Foi utilizada a função `canDeactivate` na rota `contact`. O usuário só consegue sair dessa página se cadastrar um email.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```typescript
+export const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: '',
+    canActivateChild: [authGuard],
+    children: [
+      {
+        path: '',
+        component: HomeComponent
+      },
+      {
+        path: 'about',
+        component: AboutComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent,
+        canDeactivate: [contactGuard]
+      },
+      {
+        path: 'admin-area',
+        component: AdminAreaComponent,
+        canActivate: [adminGuard],
+      },
+      {
+        path: 'doctors-area',
+        component: DoctorsAreaComponent,
+        canActivate: [doctorGuard],
+      },
+    ],
+  },
+];
+```
