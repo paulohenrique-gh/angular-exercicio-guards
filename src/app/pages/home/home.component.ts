@@ -13,7 +13,7 @@ export class HomeComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogout(): void {
-    localStorage.removeItem("token");
+    this.authService.logout();
     this.router.navigateByUrl("login");
   }
 }
