@@ -1,3 +1,13 @@
-<div><a routerLink="/admin-area">Admin area</a></div>
-<div><a routerLink="/doctors-area">Doctors area</a></div>
+<div>
+  <h1>Welcome!</h1>
+  
+  <h2>Select an area:</h2>
+  
+  <p>Admins can go access both the Admin Area and the Doctors Area</p>
+  <p>Doctors can only access the Doctors Area</p>
+</div>
 
+<div class="area-links">
+  <a routerLink="/admin-area" routerLinkActive="active-area">Admin area</a>
+  <a routerLink="/doctors-area" routerLinkActive="active-area">Doctors area</a>
+</div>
