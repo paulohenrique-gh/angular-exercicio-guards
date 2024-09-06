@@ -11,7 +11,7 @@ a:link.active-link {
 }
 
 .menu {
-  background-color: #5555b8b7;
+  background-color: #4d4d97fb;
   color: #e9e9e9;
   font-size: large;
   display: flex;
@@ -31,4 +31,5 @@ a:link.active-link {
   border-radius: 5px;
   padding: 8px 12px;
   font-size: large;
+  cursor: pointer;
 }
