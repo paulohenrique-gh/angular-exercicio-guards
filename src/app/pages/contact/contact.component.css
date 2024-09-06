@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  gap: 32px;
+}
+
+.contact-form {
+  height: 40px;
+  width: 500px;
+  display: flex;
+  gap: 8px;
+}
